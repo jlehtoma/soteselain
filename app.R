@@ -99,9 +99,8 @@ server <- function(input, output, session) {
       pal <- colorNumeric("viridis", dat$values)
       
       fill_variable <- "values"
+      sf_data <- dplyr::left_join(sf_data, dat, by = c("sote_alue" = "sote_alue"))
     }
-    
-    sf_data <- dplyr::left_join(sf_data, dat, by = c("sote_alue" = "sote_alue"))
     
     sf_fin_wgs84 <- sf::st_transform(sf_data, "+init=epsg:4326")
     
